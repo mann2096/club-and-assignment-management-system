@@ -1,7 +1,10 @@
 #include<iostream>
 #include <string>
+#include "Assignment.cpp"
+#include "Vector.cpp"
+#include "Submission.cpp"
 #include "club.cpp"
-using namespace std;
+#include "member.cpp"
 
 class Student{
 private:

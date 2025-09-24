@@ -1,5 +1,10 @@
+#include<iostream>
 #include <string>
-using namespace std;
+#include "Assignment.cpp"
+#include "Vector.cpp"
+#include "Student.cpp"
+#include "club.cpp"
+#include "member.cpp"
 
 class Student;
 class Assignment;

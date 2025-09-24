@@ -1,7 +1,5 @@
 #include <iostream>
 #include <string>
-//#include "Student.cpp"
-//#include "Club.cpp"
 #include "Assignment.cpp"
 #include "Submission.cpp"
 #include "Vector.cpp"
@@ -32,17 +30,31 @@ void mainMenu(Student* student){
     cout<<"MAIN MENU"<<endl;
     cout<<"1. Join a club"<<endl;
     cout<<"2. View your clubs"<<endl;
+    cout<<"3. View all clubs and members"<<endl;
     cout<<"3. Exit"<<endl;
     
     int choice; cin>>choice;
 
     if(choice==1){
-
+      for(int i=0; i<Clubs.size(); i++){
+        cout<<(i+1)<<": "<<(*(Clubs[i]).clubName())<<endl;
+      }
+      while(true){
+        cout<<"Enter the number of the club you wish to join: ";
+        int num; cin>>num;
+        if(num>=Clubs.size()){
+          cout<<"Invalid input"<<endl;
+          continue;
+        }
+        (*(Clubs[num])).joinClubNoCheck(student);
+      }
     }else if(choice==2){
-
+      for(int i=0; i<Clubs.size(); i++){
+        //for(int j=0; j<(*(Clubs[i]).members().size()))
+      }
     }else if(choice==3) return;
     else cout<<"Invalid input"<<endl;
-  }
+  }
 }
 
 int main(){

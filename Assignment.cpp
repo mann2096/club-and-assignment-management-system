@@ -1,7 +1,10 @@
+#include<iostream>
 #include <string>
+#include "club.cpp"
 #include "Vector.cpp"
 #include "Submission.cpp"
-#include <iostream>
+#include "member.cpp"
+#include "Student.cpp"
 using namespace std;
 
 class Club;

@@ -1,4 +1,10 @@
-using namespace std;
+#include<iostream>
+#include <string>
+#include "Assignment.cpp"
+#include "Submission.cpp"
+#include "Student.cpp"
+#include "club.cpp"
+#include "member.cpp"
 template <typename v>
 class Vector{
   private: 

@@ -1,5 +1,10 @@
 #include<iostream>
-#include<string>
+#include <string>
+#include "Assignment.cpp"
+#include "Vector.cpp"
+#include "Submission.cpp"
+#include "club.cpp"
+#include "Student.cpp"
 using namespace std;
 class Member{
 protected:

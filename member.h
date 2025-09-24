@@ -1,11 +1,7 @@
-#ifndef MEMBER_H
-#define MEMBER_H
-
 #include <iostream>
 #include <string>
 using namespace std;
 
-// Forward declarations to avoid circular dependency
 class Student;
 class Club;
 class Assignment;
@@ -56,4 +52,4 @@ public:
     NormalMember(Student* s, Club* c);
 };
 
-#endif
+
