@@ -1,45 +1,37 @@
-#include <string>
+#include "Submission.h"
 using namespace std;
 
-class Student;
-class Assignment;
-
-class Submission{
-  private:
-
-  Student* submittedBy;
-  Assignment* assignment;
-  int score;
-  string file;
-  bool islate;
-
-  public:
-
-  Submission(Student* student1, Assignment* assignment1, int score1, string file1, bool isLate1){
-    submittedBy=student1;
-    assignment=assignment1;
-    score=score1;
-    file=file1;
-    islate=isLate1;
+Submission::Submission(Student* student1,Assignment* assignment1,int score1,string file1,string timeOfSubmission){
+  submittedBy=student1;
+  assignment=assignment1;
+  score=score1;
+  file=file1;
+  isLate=false;
+  string deadline=assignment->getDeadline();
+  for(int i=0;i<deadline.size()&&i<timeOfSubmission.size();i++){
+    if(timeOfSubmission[i]>deadline[i]){
+      isLate=true;
+      break;
+    }
   }
-  
-  Student* getStudent(){
-    return submittedBy;
-  }
+}
 
-  Assignment* getAssignment(){
-    return assignment;
-  }
+Student* Submission::getStudent(){
+  return submittedBy;
+}
 
-  int getScore(){
-    return score;
-  }
+Assignment* Submission::getAssignment(){
+  return assignment;
+}
 
-  string getFile(){
-    return file;
-  }
+int Submission::getScore(){
+  return score;
+}
 
-  bool isLate(){
-    return islate;
-  }
-};
+string Submission::getFile(){
+  return file;
+}
+
+bool Submission::isLate(){
+  return isLate;
+}

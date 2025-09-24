@@ -1,31 +1,28 @@
-#include <iostream>
-#include <string>
+#include<iostream>
+#include<string>
+#include"Vector.h"
+#include"Member.h"
+#include"Assignment.h"
+#include"Student.h"
 using namespace std;
 
-// Forward declarations to avoid circular dependency
-class Student;
 class Member;
 class Assignment;
-template <typename T> class Vector; // Your custom Vector class
+class Student;
 
-class Club {
-private:
-    string clubName;
-    int clubID;                 
-    Vector<Member*> members;         
-    Vector<Assignment*> assignments; 
+class Club{
+  private:
+  string clubName;
+  int clubID;
+  Vector<Member*> members;
+  Vector<Assignment*> assignments;
 
-public:
-    // Constructor
-    Club(string name, int id, Student* adminStudent);
-
-    // Accessors
-    string getClubName() const;
-    Member* getAdmin() const;
-    void getMembers() const;
-    void viewAssignments() const;
-    Vector<Member*> getAssignmentCheckers() const;
-
-    // Student actions
-    void joinClubNoCheck(Student* s);
+  public:
+  Club(string name,int id,Student* adminStudent);
+  string getClubName()const;
+  Member* getAdmin()const;
+  void getMembers()const;
+  void viewAssignments()const;
+  vector<Member*> getAssignmentCheckers()const;
+  void joinClubNoCheck(Student* s);
 };
