@@ -67,31 +67,6 @@ Student* FirstMenu(){
   }
 }
 
-Student* FirstMenu(){
-  cout<<"1. New Student"<<endl;
-  cout<<"2. Login"<<endl;
-  int num; cin>>num;
-  if(num==1){
-    int ID, string name, string password;
-    cout<<"Enter your ID"<<endl;
-    cin>>ID;
-    cout<<"Enter your name"<<endl;
-    cin>>name;
-    cout<<"Enter your password"<<endl;
-    cin>>password;
-    Student* s=new Student(ID, name, password);
-    Students.push_back(s);
-    Student* s2=login();
-    return s2;
-  }else if(num==2){
-    Students* s2=login();
-    return s2;
-  }else{
-    cout<<"Invalid input"<<endl;
-    return nullptr;
-  }
-}
-
 void mainMenu(Student* student){
   while(true){
     cout<<"MAIN MENU"<<endl;
@@ -114,7 +89,7 @@ void mainMenu(Student* student){
       int a;
       cin>>a;
       if(a==1){
-        s2.joinClubs(currentClub);
+        s2->joinClubs(currentClub);
         mainMenu();
       }else if(a==2){
         mainMenu();
@@ -129,7 +104,6 @@ void mainMenu(Student* student){
       cin>>b;
       switch(b){
         case 1:
-        enteredClub.viewAssignments
       }
     }
   }
