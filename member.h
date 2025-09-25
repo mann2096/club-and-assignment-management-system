@@ -48,8 +48,11 @@ class NormalMember:public Member{
   public:
   NormalMember(Student* s,Club* c);
 };
-<<<<<<< HEAD
 
 
-=======
->>>>>>> 3a7fcb9f6c772ee50cc7533b32e4897b9db2a929
+
+
+
+
+
+

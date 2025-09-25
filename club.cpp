@@ -24,7 +24,8 @@ void Club::getMembers()const{
   }
 }
 
-void Club::viewAssignments()const{
+
+void Club::viewAssignments(Student* student)const{
   if(assignments.size()==0){
     cout<<"No assignments in this club.\n";
     return;
@@ -32,6 +33,19 @@ void Club::viewAssignments()const{
   cout<<"Assignments in "<<clubName<<":\n";
   for(int i=0;i<assignments.size();i++){
     cout<<i+1<<". "<<assignments[i]->getTitle()<<endl;
+
+    cout<<endl<<"Enter the Number of the Assignment you want to access"<<endl;
+    int num; cin>>num;
+    cout<<"Enter 1 to view all assignment submissions and 2 to add a submission"<<endl;
+    int num2; cin>>num2;
+    if(num2==1){
+      assignments[num]->viewSubmissions();
+    }else if(num2==2){
+      cout<<"Enter the submission in this format: file, timeOfSubmission"<<endl;
+      string file, timeOfSubmission; cin>>file>>timeOfSubmission;
+      Submission* sub=new Submission(student, *(assignments[num]), file, timeOfSubmission);
+      assignments[i]->addSubmission(sub);
+    }
   }
 }
 
