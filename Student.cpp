@@ -15,10 +15,10 @@ bool Student::checkPassword(int enteredID,string enteredPassword){
 void Student::joinClubs(Club* c){
   if(c!=nullptr){
     joinedClubs.push_back(c);
-    c->addMember(this);
+
+    c->joinClubNoCheck(this);
   }
 }
-
 void Student::viewMyClubs(Student* student){
   cout<<"Clubs for "<<name<<" (ID: "<<id<<"):"<<endl;
   for(int i=0;i<joinedClubs.size();i++){

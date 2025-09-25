@@ -48,3 +48,11 @@ class NormalMember:public Member{
   public:
   NormalMember(Student* s,Club* c);
 };
+
+
+
+
+
+
+
+

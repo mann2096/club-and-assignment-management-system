@@ -10,6 +10,20 @@ using namespace std;
 
 Vector<Student*> Students;
 Vector<Club*> Clubs;
+student* s2;
+
+void getAllClubNames() const {
+    if (Clubs.size() == 0) {
+        cout << "No clubs exist in the system." << endl;
+        return;
+    }
+    for (int i = 0; i < Clubs.size(); i++) {
+        cout << i + 1 << ". " << Clubs[i]->getClubName() << endl;
+    }
+}
+int getTotalNumberOfClubs(){
+  return Clubs.size();
+}
 
 Student* login(){
   int ID; string password;
@@ -19,13 +33,37 @@ Student* login(){
   cin>>password;
   
   for(int i=0; i<Students.size(); i++){
-    if((*(Students[i])).getID()==ID && (*(Students[i])).checkPassword()==password){
+    if(((Students[i])).getID()==ID && ((Students[i])).checkPassword()==password){
       cout<<"Successful login"<<endl;
       return Students[i];
     }
   }
   cout<<"Incorrect ID or password"<<endl;
   return nullptr;
+}
+Student* FirstMenu(){
+  cout<<"1. New Student"<<endl;
+  cout<<"2. Login"<<endl;
+  int num; cin>>num;
+  if(num==1){
+    int ID, string name, string password;
+    cout<<"Enter your ID"<<endl;
+    cin>>ID;
+    cout<<"Enter your name"<<endl;
+    cin>>name;
+    cout<<"Enter your password"<<endl;
+    cin>>password;
+    Student* s=new Student(ID, name, password);
+    Students.push_back(s);
+    s2=login();
+    return s2;
+  }else if(num==2){
+    s2=login();
+    return s2;
+  }else{
+    cout<<"Invalid input"<<endl;
+    return nullptr;
+  }
 }
 
 Student* FirstMenu(){
@@ -64,7 +102,22 @@ void mainMenu(Student* student){
 
     switch(choice){
       case 1:
-
+      getAllClubNames();
+      cout<<"Enter the number before the club which you want to join: "<<endl;
+      int num;
+      cin>>num;
+      int noOfClubs=getNoOfClubs();
+      Club* currentClub=Clubs[num-1];
+      currentClub->getMembers();
+      cout<<"Enter 1 to confirm to join the club or enter 2 to return "<<endl;
+      int a;
+      cin>>a;
+      if(a==1){
+        s2->joinClubs(currentClub);
+        mainMenu();
+      }else if(a==2){
+        mainMenu();
+      }
       case 2:
       (*student).viewMyClubs(student);
       

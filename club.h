@@ -22,7 +22,9 @@ class Club{
   string getClubName()const;
   Member* getAdmin()const;
   void getMembers()const;
+
   void viewAssignments(Student* student)const;
+
   vector<Member*> getAssignmentCheckers()const;
   void joinClubNoCheck(Student* s);
 };
