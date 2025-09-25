@@ -32,7 +32,7 @@ void Club::viewAssignments(Student* student)const{
   }
   cout<<"Assignments in "<<clubName<<":\n";
   for(int i=0;i<assignments.size();i++){
-    cout<<i+1<<". "<<assignments[i]->getTitle()<<endl;
+    cout<<i+1<<". "<<assignments[i].getTitle()<<endl;
 
     cout<<endl<<"Enter the Number of the Assignment you want to access"<<endl;
     int num; cin>>num;

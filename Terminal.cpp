@@ -11,6 +11,7 @@ using namespace std;
 Vector<Student*> Students;
 Vector<Club*> Clubs;
 student* s2;
+Club* enteredClub;
 
 void getAllClubNames() const {
     if (Clubs.size() == 0) {
@@ -18,7 +19,7 @@ void getAllClubNames() const {
         return;
     }
     for (int i = 0; i < Clubs.size(); i++) {
-        cout << i + 1 << ". " << Clubs[i]->getClubName() << endl;
+        cout << i + 1 << ". " << Clubs[i].getClubName() << endl;
     }
 }
 int getTotalNumberOfClubs(){
@@ -97,7 +98,7 @@ void mainMenu(Student* student){
     cout<<"1. Join a club"<<endl;
     cout<<"2. View your clubs"<<endl;
     cout<<"3. Exit"<<endl;
-    
+    cout<<"Enter the number for the command which you want to perform"<<endl;
     int choice; cin>>choice;
 
     switch(choice){
@@ -113,16 +114,24 @@ void mainMenu(Student* student){
       int a;
       cin>>a;
       if(a==1){
-        s2->joinClubs(currentClub);
+        s2.joinClubs(currentClub);
         mainMenu();
       }else if(a==2){
         mainMenu();
       }
       case 2:
-      (*student).viewMyClubs(student);
-      
+      enteredClub=(*student).viewMyClubs(student); 
+      cout<<"CLUB MENU"<<endl;
+      cout<<"1. View Assignments"<<endl;
+      cout<<"2. Admin Functions"<<endl;
+      cout<<"Enter the number for the command which you want to perform"<<endl;
+      int b;
+      cin>>b;
+      switch(b){
+        case 1:
+        enteredClub.viewAssignments
+      }
     }
-
   }
 }
 

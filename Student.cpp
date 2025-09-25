@@ -16,19 +16,18 @@ void Student::joinClubs(Club* c){
   if(c!=nullptr){
     joinedClubs.push_back(c);
 
-    c->joinClubNoCheck(this);
+    c.joinClubNoCheck(this);
   }
 }
-void Student::viewMyClubs(Student* student){
+Club* Student::viewMyClubs(Student* student){
   cout<<"Clubs for "<<name<<" (ID: "<<id<<"):"<<endl;
   for(int i=0;i<joinedClubs.size();i++){
-    cout<<(i+1)<<": "<<joinedClubs[i]->getClubName()<<endl;
+    cout<<(i+1)<<": "<<joinedClubs[i].getClubName()<<endl;
   }
   cout<<endl<<"Enter the Club number, Enter 0 to exit"<<endl;
   int num; cin>>num;
-  if(num==0) return;
-  joinedClubs[i-1].viewAssignments(student);
-  if()
+  if(num==0) mainMenu();
+  return joinedClubs[num-1];
 }
 
 void Student::submitAssignment(Assignment* a,string file,string timeOfSubmission){
