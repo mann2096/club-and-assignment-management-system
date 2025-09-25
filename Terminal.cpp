@@ -104,6 +104,22 @@ void mainMenu(Student* student){
       cin>>b;
       switch(b){
         case 1:
+
+        enteredClub.viewAssignments(s2);
+        //remaining idhar thoda sa
+        case 2:
+        if(enteredClub->isAdmin(s2)){
+          cout<<"1. Create assignment"<<endl;
+          cout<<"2. Add member"<<endl;
+          cout<<"3. Remove member"<<endl;
+          cout<<"4. Promote to checker"<<endl;
+          cout<<"5. Demote to normnal"<<endl;
+          cout<<"6. Change Admin"<<endl;
+        }else{
+          cout<<"You are not an Admin"<<endl;
+          mainMenu();
+        }
+
       }
     }
   }

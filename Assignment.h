@@ -19,6 +19,8 @@ class Assignment{
   Assignment(string title, int scoreMax, string deadline, Club* parent);
 
   void viewSubmissions();
+
+  void ViewYourSubmissions(Student* s);
   
   void addSubmission(Submission* sub);
 
