@@ -67,7 +67,6 @@ Student* FirstMenu(){
   }
 }
 
-
 void mainMenu(Student* student){
   while(true){
     cout<<"MAIN MENU"<<endl;
@@ -90,7 +89,7 @@ void mainMenu(Student* student){
       int a;
       cin>>a;
       if(a==1){
-        s2.joinClubs(currentClub);
+        s2->joinClubs(currentClub);
         mainMenu();
       }else if(a==2){
         mainMenu();
@@ -105,6 +104,7 @@ void mainMenu(Student* student){
       cin>>b;
       switch(b){
         case 1:
+
         enteredClub.viewAssignments(s2);
         //remaining idhar thoda sa
         case 2:
@@ -119,6 +119,7 @@ void mainMenu(Student* student){
           cout<<"You are not an Admin"<<endl;
           mainMenu();
         }
+
       }
     }
   }

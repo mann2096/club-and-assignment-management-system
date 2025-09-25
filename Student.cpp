@@ -16,7 +16,7 @@ void Student::joinClubs(Club* c){
   if(c!=nullptr){
     joinedClubs.push_back(c);
 
-    c.joinClubNoCheck(this);
+    c->joinClubNoCheck(this);
   }
 }
 Club* Student::viewMyClubs(Student* student){

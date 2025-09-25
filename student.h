@@ -1,4 +1,3 @@
-
 #include<iostream>
 #include<string>
 #include"Vector.h"
@@ -6,8 +5,6 @@
 #include"Submission.h"
 
 using namespace std;
-
-
 class Club;
 
 class Student{
