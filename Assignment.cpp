@@ -1,27 +1,18 @@
 #include<iostream>
-#include <string>
-#include "club.cpp"
-#include "Vector.cpp"
-#include "Submission.cpp"
-#include "member.cpp"
-#include "Student.cpp"
+#include "Assignment.h"
+#include "Submission.h"
+#include "club.h"
 using namespace std;
 
-class Club;
-class Submission;
+Assignment::Assignment(string title, int score, string deadline, Club* parent) {
+    Title=title;
+    scoreMax=score;
+    Deadline=deadline;
+    parentClub=parent;
+}
 
-class Assignment{
-  private:
 
-  Club* parentClub;
-  string Title;
-  int scoreMax;
-  string Deadline;
-  Vector<Submission*> submissions;
-
-  public:
-
-  void viewSubmissions(){
+  void Assignment::viewSubmissions(){
     cout<<Title<<endl;
     for(int i=0; i<submissions.size(); i++){
       Submission* sub=submissions[i];
@@ -34,23 +25,22 @@ class Assignment{
     }
   }
   
-  void addSubmission(Submission* sub){
+ void Assignment::addSubmission(Submission* sub){
     submissions.push_back(sub);
-  }
+}
 
-  string getTitle(){
+string Assignment::getTitle(){
     return Title;
-  }
+}
 
-  Club* getParentClub(){
+Club* Assignment::getParentClub(){
     return parentClub;
-  }
+}
 
-  string getDeadline(){
+string Assignment::getDeadline(){
     return Deadline;
-  }
+}
 
-  int getScoreMax(){
+int Assignment::getScoreMax(){
     return scoreMax;
-  }
-};
+}

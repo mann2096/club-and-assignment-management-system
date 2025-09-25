@@ -1,37 +1,27 @@
-#include <iostream>
-#include <string>
+#include<iostream>
+#include<string>
+#include"Vector.h"
+#include"Assignment.h"
+#include"Submission.h"
 using namespace std;
 
-// Forward declarations to avoid circular dependency
 class Club;
-class Assignment;
-class Submission;
-template <typename T> class Vector; // Your custom Vector class
 
-class Student {
-private:
-    string name;
-    int id;
-    string password;
-    Vector<Club*> joinedClubs;
-    Vector<Submission*> submissions;
+class Student{
+  private:
+  string name;
+  int id;
+  string password;
+  Vector<Club*> joinedClubs;
+  Vector<Submission*> submissions;
 
-public:
-    // Constructor
-    Student(int id, string name, string password);
-
-    // Accessors
-    int getID() const;
-    string getName() const;
-
-    // Authentication
-    bool checkPassword(int enteredID, string enteredPassword);
-
-    // Club actions
-    void joinClubs(Club* c);
-    void viewMyClubs() const;
-
-    // Assignment actions
-    void submitAssignment(Assignment* a, string file);
-    void viewSubmissions() const;
+  public:
+  Student(int id,string name,string password);
+  int getID()const;
+  string getName()const;
+  bool checkPassword(int enteredID,string enteredPassword);
+  void joinClubs(Club* c);
+  void viewMyClubs();
+  void submitAssignment(Assignment* a,string file,string timeOfSubmission);
+  void viewSubmissions()const;
 };

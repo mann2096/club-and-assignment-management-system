@@ -1,12 +1,29 @@
-#include <iostream>
+#include<iostream>
 #include <string>
-#include "Assignment.cpp"
-#include "Submission.cpp"
-#include "Vector.cpp"
+#include "club.h"
+#include "Vector.h"
+#include "Assignment.h"
+#include "student.h"
+#include "member.h"
+#include "Submission.h"
 using namespace std;
 
 Vector<Student*> Students;
 Vector<Club*> Clubs;
+student* s2;
+
+void getAllClubNames() const {
+    if (Clubs.size() == 0) {
+        cout << "No clubs exist in the system." << endl;
+        return;
+    }
+    for (int i = 0; i < Clubs.size(); i++) {
+        cout << i + 1 << ". " << Clubs[i]->getClubName() << endl;
+    }
+}
+int getTotalNumberOfClubs(){
+  return Clubs.size();
+}
 
 Student* login(){
   int ID; string password;
@@ -16,7 +33,7 @@ Student* login(){
   cin>>password;
   
   for(int i=0; i<Students.size(); i++){
-    if((*(Students[i])).getID()==ID && (*(Students[i])).checkPassword()==password){
+    if(((Students[i])).getID()==ID && ((Students[i])).checkPassword()==password){
       cout<<"Successful login"<<endl;
       return Students[i];
     }
@@ -24,44 +41,67 @@ Student* login(){
   cout<<"Incorrect ID or password"<<endl;
   return nullptr;
 }
+Student* FirstMenu(){
+  cout<<"1. New Student"<<endl;
+  cout<<"2. Login"<<endl;
+  int num; cin>>num;
+  if(num==1){
+    int ID, string name, string password;
+    cout<<"Enter your ID"<<endl;
+    cin>>ID;
+    cout<<"Enter your name"<<endl;
+    cin>>name;
+    cout<<"Enter your password"<<endl;
+    cin>>password;
+    Student* s=new Student(ID, name, password);
+    Students.push_back(s);
+    s2=login();
+    return s2;
+  }else if(num==2){
+    s2=login();
+    return s2;
+  }else{
+    cout<<"Invalid input"<<endl;
+    return nullptr;
+  }
+}
 
 void mainMenu(Student* student){
   while(true){
     cout<<"MAIN MENU"<<endl;
     cout<<"1. Join a club"<<endl;
     cout<<"2. View your clubs"<<endl;
-    cout<<"3. View all clubs and members"<<endl;
     cout<<"3. Exit"<<endl;
     
     int choice; cin>>choice;
-
-    if(choice==1){
-      for(int i=0; i<Clubs.size(); i++){
-        cout<<(i+1)<<": "<<(*(Clubs[i]).clubName())<<endl;
+    switch(choice){
+      case 1:
+      getAllClubNames();
+      cout<<"Enter the number before the club which you want to join: "<<endl;
+      int num;
+      cin>>num;
+      int noOfClubs=getNoOfClubs();
+      Club* currentClub=Clubs[num-1];
+      currentClub->getMembers();
+      cout<<"Enter 1 to confirm to join the club or enter 2 to return "<<endl;
+      int a;
+      cin>>a;
+      if(a==1){
+        s2->joinClubs(currentClub);
+        mainMenu();
+      }else if(a==2){
+        mainMenu();
       }
-      while(true){
-        cout<<"Enter the number of the club you wish to join: ";
-        int num; cin>>num;
-        if(num>=Clubs.size()){
-          cout<<"Invalid input"<<endl;
-          continue;
-        }
-        (*(Clubs[num])).joinClubNoCheck(student);
-      }
-    }else if(choice==2){
-      for(int i=0; i<Clubs.size(); i++){
-        //for(int j=0; j<(*(Clubs[i]).members().size()))
-      }
-    }else if(choice==3) return;
-    else cout<<"Invalid input"<<endl;
-  }
+      case 2:
+    }
+}
 }
 
 int main(){
   cout<<"CLUB AND ASSIGNMENT MANAGAMENT SYSTEM"<<endl;
   Student* student=nullptr;
   while(student==nullptr){
-    student=login();
+    student=FirstMenu();
   }
   mainMenu(student);
 
