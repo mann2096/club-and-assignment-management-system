@@ -1,9 +1,9 @@
 #include<iostream>
 #include<string>
 #include"Vector.h"
-#include"Member.h"
+#include"member.h"
 #include"Assignment.h"
-#include"Student.h"
+#include"student.h"
 using namespace std;
 
 class Member;
@@ -22,7 +22,7 @@ class Club{
   string getClubName()const;
   Member* getAdmin()const;
   void getMembers()const;
-  void viewAssignments()const;
+  void viewAssignments(Student* student)const;
   vector<Member*> getAssignmentCheckers()const;
   void joinClubNoCheck(Student* s);
 };

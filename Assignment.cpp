@@ -1,7 +1,7 @@
 #include<iostream>
 #include "Assignment.h"
 #include "Submission.h"
-#include "Club.h"
+#include "club.h"
 using namespace std;
 
 Assignment::Assignment(string title, int score, string deadline, Club* parent) {
