@@ -22,6 +22,7 @@ class Club{
   string getClubName()const;
   Member* getAdmin()const;
   void getMembers()const;
+  bool isAdmin(Student* s)const;
 
   void viewAssignments(Student* student)const;
 

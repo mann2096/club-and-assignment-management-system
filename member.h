@@ -31,11 +31,11 @@ class Admin:public Member{
   public:
   Admin(Student* s,Club* c);
   void createAssignment(const string& title,int maxScore,const string& deadline);
-  void addMember(Student* s);
+  void addMember(int studentID);
   void removeMember(int studentID);
-  void promoteToChecker(Member* m);
-  void demoteToNormal(Member* m);
-  void changeAdmin(Member* newAdmin);
+  void promoteToChecker(int studentID);
+  void demoteToNormal(int studentID);
+  void changeAdmin(int studentID);
 };
 
 class AssignmentChecker:public Member{
