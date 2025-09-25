@@ -1,7 +1,7 @@
 #include<iostream>
 #include<string>
-#include"Student.h"
-#include"Club.h"
+#include"student.h"
+#include"club.h"
 #include"Assignment.h"
 using namespace std;
 

@@ -1,4 +1,4 @@
-#include"Member.h"
+#include"member.h"
 using namespace std;
 
 Member::Member(Student* s,Club* c,string r):student(s),club(c),role(r){}

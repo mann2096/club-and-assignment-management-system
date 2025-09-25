@@ -19,7 +19,7 @@ class Student{
   string getName()const;
   bool checkPassword(int enteredID,string enteredPassword);
   void joinClubs(Club* c);
-  void viewMyClubs();
+  void viewMyClubs(Student* student);
   void submitAssignment(Assignment* a,string file,string timeOfSubmission);
   void viewSubmissions()const;
 };
