@@ -1,4 +1,6 @@
 #include"club.h"
+#include "member.h"
+#include "Submission.h"
 using namespace std;
 
 Club::Club(string name,int id,Student* adminStudent):clubName(name),clubID(id){
