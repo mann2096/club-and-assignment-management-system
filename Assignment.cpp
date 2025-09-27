@@ -1,8 +1,9 @@
-#include<iostream>
+#include <iostream>
 #include "Assignment.h"
 #include "Submission.h"
-#include "club.h"
+#include "Student.h"
 using namespace std;
+
 
 Assignment::Assignment(string title, int score, string deadline, Club* parent) {
     Title=title;
@@ -28,7 +29,7 @@ Assignment::Assignment(string title, int score, string deadline, Club* parent) {
     cout<<"Enter the score which you want to give"<<endl;
     int b;
     cin>>b;
-    submissions[a-1]->setscore(b);
+    submissions[a-1]->setScore(b);
   }
 
   void Assignment::viewYourSubmissions(Student* s){

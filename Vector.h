@@ -1,3 +1,4 @@
+#pragma once
 #include<iostream>
 using namespace std;
 
@@ -44,7 +45,7 @@ class Vector{
     return current_size;
   }
 
-  v& operator[](int index) {
+  v& operator[](int index) const {
     if (index < 0 || index >= current_size) {
         throw out_of_range("Invalid index");
     }

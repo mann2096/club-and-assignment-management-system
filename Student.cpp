@@ -22,7 +22,7 @@ void Student::joinClubs(Club* c){
 Club* Student::viewMyClubs(Student* student){
   cout<<"Clubs for "<<name<<" (ID: "<<id<<"):"<<endl;
   for(int i=0;i<joinedClubs.size();i++){
-    cout<<(i+1)<<": "<<joinedClubs[i].getClubName()<<endl;
+    cout<<(i+1)<<": "<<joinedClubs[i]->getClubName()<<endl;
   }
   cout<<endl<<"Enter the Club number"<<endl;
   int num; cin>>num;
@@ -30,7 +30,7 @@ Club* Student::viewMyClubs(Student* student){
 }
 
 void Student::submitAssignment(Assignment* a,string file,string timeOfSubmission){
-  Submission* s=new Submission(this,a,file,timeOfSubmission);
+  Submission* s=new Submission(this,a,0,file,timeOfSubmission);
   submissions.push_back(s);
   a->addSubmission(s);
 }
