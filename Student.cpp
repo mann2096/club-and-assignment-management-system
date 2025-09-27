@@ -24,9 +24,8 @@ Club* Student::viewMyClubs(Student* student){
   for(int i=0;i<joinedClubs.size();i++){
     cout<<(i+1)<<": "<<joinedClubs[i].getClubName()<<endl;
   }
-  cout<<endl<<"Enter the Club number, Enter 0 to exit"<<endl;
+  cout<<endl<<"Enter the Club number"<<endl;
   int num; cin>>num;
-  if(num==0) mainMenu();
   return joinedClubs[num-1];
 }
 

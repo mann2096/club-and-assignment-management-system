@@ -90,22 +90,20 @@ void mainMenu(Student* student){
       cin>>a;
       if(a==1){
         s2->joinClubs(currentClub);
-        mainMenu();
-      }else if(a==2){
-        mainMenu();
       }
       break;
       case 2:
-      enteredClub=(*student).viewMyClubs(student); 
+      enteredClub=(*student)->viewMyClubs(student); 
       cout<<"CLUB MENU"<<endl;
       cout<<"1. View Assignments"<<endl;
       cout<<"2. Admin Functions"<<endl;
+      cout<<"3.EXIT"<<endl;
       cout<<"Enter the number for the command which you want to perform"<<endl;
       int b;
       cin>>b;
       switch(b){
         case 1:
-        enteredClub.viewAssignments(s2);
+        enteredClub->viewAssignments(s2);
         break;
         case 2:
         if(enteredClub->isAdmin(s2)){
@@ -170,17 +168,19 @@ void mainMenu(Student* student){
         break;
       }
       break;
+      case 3:
+      return;
     }
   }
 }
 
 int main(){
+  while(true){
   cout<<"CLUB AND ASSIGNMENT MANAGAMENT SYSTEM"<<endl;
   Student* student=nullptr;
   while(student==nullptr){
     student=FirstMenu();
   }
   mainMenu(student);
-
-  return 0;
+}
 }

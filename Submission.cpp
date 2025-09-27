@@ -1,4 +1,5 @@
 #include "Submission.h"
+#include "Assignment.h"
 using namespace std;
 
 Submission::Submission(Student* student1,Assignment* assignment1,int score1,string file1,string timeOfSubmission){
@@ -6,11 +7,11 @@ Submission::Submission(Student* student1,Assignment* assignment1,int score1,stri
   assignment=assignment1;
   score=score1;
   file=file1;
-  isLate=false;
+  late=false;
   string deadline=assignment->getDeadline();
   for(int i=0;i<deadline.size()&&i<timeOfSubmission.size();i++){
     if(timeOfSubmission[i]>deadline[i]){
-      isLate=true;
+      late=true;
       break;
     }
   }
@@ -37,5 +38,5 @@ string Submission::getFile(){
 }
 
 bool Submission::isLate(){
-  return isLate;
+  return late;
 }

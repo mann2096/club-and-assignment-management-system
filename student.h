@@ -1,11 +1,11 @@
 #include<iostream>
 #include<string>
 #include"Vector.h"
-#include"Assignment.h"
-#include"Submission.h"
 
 using namespace std;
 class Club;
+class Assignment;
+class Submission;
 
 class Student{
   private:
