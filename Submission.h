@@ -1,7 +1,5 @@
 #include <iostream>
-#include<string>
-#include"student.h"
-#include"Assignment.h"
+#include <string>
 using namespace std;
 
 class Student;
@@ -13,7 +11,7 @@ class Submission{
   Assignment* assignment;
   int score;
   string file;
-  bool isLate;
+  bool late;
 
   public:
   Submission(Student* student1, Assignment* assignment1, int score1=0, string file1="", string timeOfSubmission="");

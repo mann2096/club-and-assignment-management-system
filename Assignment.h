@@ -1,8 +1,8 @@
 #include<iostream>
 #include "Vector.h"
-#include"student.h"
 using namespace std;
 
+class Student;
 class Club;
 class Submission;
 
