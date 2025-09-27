@@ -22,6 +22,7 @@ class Student{
   string getName()const;
   bool checkPassword(int enteredID,string enteredPassword);
   void joinClubs(Club* c);
+  void adminCreatesClub(Club* c);
 
   Club* viewMyClubs(Student* student);
   void submitAssignment(Assignment* a,string file,string timeOfSubmission);

@@ -21,6 +21,7 @@ class Club{
   Vector<AssignmentChecker*> assignmentCheckers;
   friend class Admin;
 
+
   public:
   Club(string name,int id,Student* adminStudent);
   string getClubName()const;
@@ -29,6 +30,7 @@ class Club{
   bool isAdmin(Student* s)const;
   bool isAssignmentChecker(Student* s)const;
   void viewAssignments(Student* student)const;
+  Vector<Assignment*> getAssignment() const; 
 
   Vector<Member*> getAssignmentCheckers()const;
   void joinClubNoCheck(Student* s);
