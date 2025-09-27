@@ -31,6 +31,7 @@ class Club{
   bool isAssignmentChecker(Student* s)const;
   void viewAssignments(Student* student)const;
   Vector<Assignment*> getAssignment() const; 
+  bool alreadyMember(Student* s) const;
 
   Vector<Member*> getAssignmentCheckers()const;
   void joinClubNoCheck(Student* s);

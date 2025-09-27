@@ -52,43 +52,44 @@ bool Club::isAssignmentChecker(Student* s)const{
 
 void Club::viewAssignments(Student* student)const{
   if(assignments.size()==0){
-    cout<<"No assignments in this club.\n";
+    cout<<"No assignments in this club"<<endl;
     return;
   }
   cout<<"Assignments in "<<clubName<<":\n";
   for(int i=0;i<assignments.size();i++){
-    cout<<i+1<<". "<<assignments[i]->getTitle()<<endl;}
+    cout<<i+1<<". "<<assignments[i]->getTitle()<<"                 Deadline:"<<assignments[i]->getDeadline()<<endl;}
 
     cout<<endl<<"Enter the Number of the Assignment you want to access or enter 0 to exit"<<endl;
     int num; cin>>num;
     if(num==0){
       return;
     }
-    cout<<"1.view all assignment submissions"<<endl;
-    cout<<"2.view your submissions"<<endl;
-    cout<<"3.add a submission"<<endl;
+    cout<<"1. View all assignment submissions"<<endl;
+    cout<<"2. View your submissions"<<endl;
+    cout<<"3. Add a submission"<<endl;
     cout<<"4. Return to Main Menu"<<endl;
     int num2;
-    cout<<"Enter the number for the command you want to implement"<<endl;
+    cout<<"Enter the number of the command you want to implement"<<endl;
     cin>>num2;
     if(num2==1){
       if(isAssignmentChecker(student)){
-      assignments[num]->viewSubmissions();
+      assignments[num-1]->viewSubmissions();
       }else{
-        cout<<"To see all submissions you should be a assignment checker"<<endl;
+        cout<<"To see all submissions, you should be an assignment checker"<<endl;
         viewAssignments(student);
       }
     }else if(num2==3){
       string file, timeOfSubmission;
       cout<<"Enter the file"<<endl;
+      cin.ignore();
       getline(cin, file);
-      cout<<"Enter the timeOfSubmission"<<endl;
-      getline(cin, timeOfSubmission);
-      Submission* sub = new Submission(student, assignments[num], 0, file, timeOfSubmission);
-      assignments[num]->addSubmission(sub);
+      cout<<"Enter the time Of Submission"<<endl;
+      cin>>timeOfSubmission;
+      Submission* sub = new Submission(student, assignments[num-1], 0, file, timeOfSubmission);
+      assignments[num-1]->addSubmission(sub);
       viewAssignments(student);
     }else if(num2==2){
-      assignments[num]->viewYourSubmissions(student);
+      assignments[num-1]->viewYourSubmissions(student);
       string input;
       cout<<"Enter anything to return back"<<endl;
       cin>>input;
@@ -102,6 +103,13 @@ void Club::viewAssignments(Student* student)const{
 
 Vector<Assignment*> Club::getAssignment() const {
     return assignments;
+}
+
+bool Club::alreadyMember(Student* s) const{
+  for(int i=0; i<members.size(); i++){
+    if((members[i]->getStudent())->getID()==s->getID()) return true;
+  }
+  return false;
 }
 
 void Club::joinClubNoCheck(Student* s){

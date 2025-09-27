@@ -9,12 +9,7 @@ Submission::Submission(Student* student1,Assignment* assignment1,int score1,stri
   file=file1;
   late=false;
   string deadline=assignment->getDeadline();
-  for(int i=0;i<deadline.size()&&i<timeOfSubmission.size();i++){
-    if(timeOfSubmission[i]>deadline[i]){
-      late=true;
-      break;
-    }
-  }
+  if(timeOfSubmission>deadline) late=true;
 }
 
 void Submission::setScore(int s){

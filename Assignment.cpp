@@ -14,19 +14,27 @@ Assignment::Assignment(string title, int score, string deadline, Club* parent) {
 
 
   void Assignment::viewSubmissions(){
+    if(submissions.size()==0){
+      cout<<"No submissions have been made for this assignment"<<endl;
+      return;
+    }
     cout<<Title<<endl;
     for(int i=0; i<submissions.size(); i++){
       Submission* sub=submissions[i];
-      cout<<(i+1)<<". Student: "<<(*sub).getStudent()<<endl;
+      cout<<(i+1)<<". Student: "<<((sub->getStudent())->getName())<<endl;
       cout<<"Score: "<<(*sub).getScore()<<endl;
       cout<<"File: "<<(*sub).getFile()<<endl;
-      if(!sub->isLate()) cout << "Late Status: No" << endl;
-      else cout << "Late Status: Yes" << endl;
+      if(!sub->isLate()) cout << "Late Status: No" << endl<<endl;
+      else cout << "Late Status: Yes" << endl<<endl;
     }
-    cout<<"Enter the number of submission which you want to grade"<<endl;
+    cout<<"Enter the number of the submission you want to grade"<<endl;
     int a;
     cin>>a;
-    cout<<"Enter the score which you want to give"<<endl;
+    if(a>submissions.size()){
+      cout<<"No such submission exists yet"<<endl;
+      return;
+    }
+    cout<<"Enter the score you want to give"<<endl;
     int b;
     cin>>b;
     submissions[a-1]->setScore(b);
@@ -39,11 +47,11 @@ Assignment::Assignment(string title, int score, string deadline, Club* parent) {
         if(s2->getID()==s->getID()){
           ct++;
          Submission* sub=submissions[i];
-         cout<<(i+1)<<". Student: "<<(*sub).getStudent()<<endl;
+         cout<<(ct)<<". Student: "<<((sub->getStudent())->getName())<<endl;
          cout<<"Score: "<<(*sub).getScore()<<endl;
          cout<<"File: "<<(*sub).getFile()<<endl;
          bool num=(*sub).isLate();
-         if(!sub->isLate()) cout << "Late Status: No" << endl;
+         if(!num) cout << "Late Status: No" << endl;
          else cout << "Late Status: Yes" << endl;          
         }
     }
