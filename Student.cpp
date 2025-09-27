@@ -21,13 +21,23 @@ void Student::joinClubs(Club* c){
     c->joinClubNoCheck(this);
   }
 }
+
+void Student::adminCreatesClub(Club* c){
+  if(c!=nullptr){
+    joinedClubs.push_back(c);
+  }
+}
+
 Club* Student::viewMyClubs(Student* student){
   cout<<"Clubs for "<<name<<" (ID: "<<id<<"):"<<endl;
   for(int i=0;i<joinedClubs.size();i++){
     cout<<(i+1)<<": "<<joinedClubs[i]->getClubName()<<endl;
   }
-  cout<<endl<<"Enter the Club number"<<endl;
+  cout<<endl<<"Enter the Club number or enter 0 to exit"<<endl;
   int num; cin>>num;
+  if(num==0){
+    return nullptr;
+  }
   return joinedClubs[num-1];
 }
 

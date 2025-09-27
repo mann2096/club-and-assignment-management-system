@@ -33,9 +33,11 @@ Assignment::Assignment(string title, int score, string deadline, Club* parent) {
   }
 
   void Assignment::viewYourSubmissions(Student* s){
+    int ct=0;
     for(int i=0; i<submissions.size(); i++){
         Student* s2=submissions[i]->getStudent();
         if(s2->getID()==s->getID()){
+          ct++;
          Submission* sub=submissions[i];
          cout<<(i+1)<<". Student: "<<(*sub).getStudent()<<endl;
          cout<<"Score: "<<(*sub).getScore()<<endl;
@@ -45,6 +47,7 @@ Assignment::Assignment(string title, int score, string deadline, Club* parent) {
          else cout << "Late Status: Yes" << endl;          
         }
     }
+    if(ct==0) cout<<"You have no submissions for this assignment"<<endl;
   }
   
  void Assignment::addSubmission(Submission* sub){

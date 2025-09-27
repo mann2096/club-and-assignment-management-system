@@ -7,6 +7,7 @@ Club::Club(string name,int id,Student* adminStudent):clubName(name),clubID(id){
   Admin* adminMember=new Admin(adminStudent,this);
   admin=adminMember;
   members.push_back(adminMember);
+  adminStudent->adminCreatesClub(this);
 }
 
 string Club::getClubName()const{
@@ -56,13 +57,17 @@ void Club::viewAssignments(Student* student)const{
   }
   cout<<"Assignments in "<<clubName<<":\n";
   for(int i=0;i<assignments.size();i++){
-    cout<<i+1<<". "<<assignments[i]->getTitle()<<endl;
+    cout<<i+1<<". "<<assignments[i]->getTitle()<<endl;}
 
-    cout<<endl<<"Enter the Number of the Assignment you want to access"<<endl;
+    cout<<endl<<"Enter the Number of the Assignment you want to access or enter 0 to exit"<<endl;
     int num; cin>>num;
+    if(num==0){
+      return;
+    }
     cout<<"1.view all assignment submissions"<<endl;
     cout<<"2.view your submissions"<<endl;
     cout<<"3.add a submission"<<endl;
+    cout<<"4. Return to Main Menu"<<endl;
     int num2;
     cout<<"Enter the number for the command you want to implement"<<endl;
     cin>>num2;
@@ -76,15 +81,27 @@ void Club::viewAssignments(Student* student)const{
     }else if(num2==3){
       string file, timeOfSubmission;
       cout<<"Enter the file"<<endl;
-      cin>>file;
+      getline(cin, file);
       cout<<"Enter the timeOfSubmission"<<endl;
-      cin>>timeOfSubmission;
+      getline(cin, timeOfSubmission);
       Submission* sub = new Submission(student, assignments[num], 0, file, timeOfSubmission);
       assignments[num]->addSubmission(sub);
+      viewAssignments(student);
     }else if(num2==2){
       assignments[num]->viewYourSubmissions(student);
+      string input;
+      cout<<"Enter anything to return back"<<endl;
+      cin>>input;
+      viewAssignments(student);
+    }else if(num2==4){
+      return;
     }
-  }
+  
+}
+
+
+Vector<Assignment*> Club::getAssignment() const {
+    return assignments;
 }
 
 void Club::joinClubNoCheck(Student* s){
