@@ -22,7 +22,7 @@ void Club::getMembers()const{
   }
 }
 
-bool Club::isAdmin(Student* s){
+bool Club::isAdmin(Student* s)const{
   bool flag=false;
   int id=s->getID();
   int id2=admin->getStudent()->getID();
@@ -32,7 +32,7 @@ bool Club::isAdmin(Student* s){
   return flag;
 }
 
-bool Club::isAssignmentChecker(Student* s){
+bool Club::isAssignmentChecker(Student* s)const{
   bool flag=false;
   int id=s->getID();
   for(int i=0; i<members.size(); i++){
@@ -77,7 +77,7 @@ void Club::viewAssignments(Student* student)const{
       cin>>file;
       cout<<"Enter the timeOfSubmission"<<endl;
       cin>>timeOfSubmission;
-      Submission* sub=new Submission(student, *(assignments[num]), file, timeOfSubmission);
+      Submission* sub = new Submission(student, assignments[num], 0, file, timeOfSubmission);
       assignments[num]->addSubmission(sub);
     }else if(num2==2){
       assignments[num]->viewYourSubmissions(student);
@@ -102,4 +102,9 @@ void Club::removeMember(int studentID) {
     }
     cout << "Student with ID " << studentID << " not found in this club." << endl;
 }
+
+void Club::addAssignment(Assignment* a) {
+    assignments.push_back(a);
+}
+
 

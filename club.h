@@ -1,14 +1,17 @@
+#pragma once
 #include<iostream>
 #include<string>
 #include"Vector.h"
 #include"member.h"
 #include"Assignment.h"
+#include"Submission.h"
 #include"student.h"
 using namespace std;
-
+#include <vector>
 class Member;
 class Assignment;
 class Student;
+class Submission;
 
 class Club{
   private:
@@ -18,6 +21,7 @@ class Club{
   Vector<Assignment*> assignments;
   Admin* admin;
   Vector<AssignmentChecker*> assignmentCheckers;
+  friend class Admin;
 
   public:
   Club(string name,int id,Student* adminStudent);
@@ -31,4 +35,5 @@ class Club{
   vector<Member*> getAssignmentCheckers()const;
   void joinClubNoCheck(Student* s);
   void removeMember(int studentID);
+  void addAssignment(Assignment* a);
 };

@@ -1,5 +1,6 @@
 #include"member.h"
 using namespace std;
+extern Vector<Student*> Students;
 
 Member::Member(Student* s,Club* c,string r):student(s),club(c),role(r){}
 
