@@ -1,4 +1,5 @@
 #include"member.h"
+#include "club.h"
 using namespace std;
 extern Vector<Student*> Students;
 

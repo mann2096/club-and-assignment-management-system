@@ -80,7 +80,7 @@ void mainMenu(Student* student){
     int choice; cin>>choice;
 
     switch(choice){
-      case 1:
+      case 1:{
       getAllClubNames();
       cout<<"Enter the number before the club which you want to join: "<<endl;
       int num;
@@ -95,7 +95,8 @@ void mainMenu(Student* student){
         s2->joinClubs(currentClub);
       }
       break;
-      case 2:
+      }
+      case 2:{
       enteredClub=student->viewMyClubs(student); 
       cout<<"CLUB MENU"<<endl;
       cout<<"1. View Assignments"<<endl;
@@ -176,15 +177,12 @@ void mainMenu(Student* student){
         break;
       }
       break;
-      case 3:
+      }
+      case 3:{
       return;
+      }
     }
   }
-  cout<<"Enter 1 to return to the main menu"<<endl;
-  int z;
-  cin>>z;
-  if(z==1) mainMenu();
-  else return;
 }
 
 int main(){
@@ -196,6 +194,6 @@ int main(){
   }
   mainMenu(student);
 
-  return 0;
 }
+return 0;
 }

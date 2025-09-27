@@ -1,4 +1,6 @@
 #include"student.h"
+#include "Submission.h"
+#include "Assignment.h"
 #include"club.h"
 #include<iostream>
 using namespace std;

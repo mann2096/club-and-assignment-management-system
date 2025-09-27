@@ -2,16 +2,14 @@
 #include<iostream>
 #include<string>
 #include"Vector.h"
-#include"member.h"
-#include"Assignment.h"
-#include"Submission.h"
-#include"student.h"
 using namespace std;
 #include <vector>
 class Member;
 class Assignment;
 class Student;
 class Submission;
+class Admin;
+class AssignmentChecker;
 
 class Club{
   private:
