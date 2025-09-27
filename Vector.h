@@ -26,7 +26,7 @@ class Vector{
   }
 
   void push_back(v value){
-    if(current_size==total_size) resize(total_size+1);
+    if(current_size==total_size) resize(total_size*2);
     arr[current_size]=value;
     current_size++;
   }
@@ -44,10 +44,10 @@ class Vector{
     return current_size;
   }
 
-  v& operator[](int index){
-    if(index<0||index>=current_size){
-      cout<<"Invalid index"<<endl;
+  v& operator[](int index) {
+    if (index < 0 || index >= current_size) {
+        throw out_of_range("Invalid index");
     }
     return arr[index];
-  }
+}
 };

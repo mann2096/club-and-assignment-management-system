@@ -10,7 +10,7 @@ using namespace std;
 
 Vector<Student*> Students;
 Vector<Club*> Clubs;
-student* s2;
+Student* s2;
 Club* enteredClub;
 
 void getAllClubNames() const {
@@ -34,7 +34,7 @@ Student* login(){
   cin>>password;
   
   for(int i=0; i<Students.size(); i++){
-    if(((Students[i])).getID()==ID && ((Students[i])).checkPassword()==password){
+    if(Students[i]->checkPassword(ID, password)){
       cout<<"Successful login"<<endl;
       return Students[i];
     }
@@ -94,6 +94,7 @@ void mainMenu(Student* student){
       }else if(a==2){
         mainMenu();
       }
+      break;
       case 2:
       enteredClub=(*student).viewMyClubs(student); 
       cout<<"CLUB MENU"<<endl;
@@ -104,23 +105,71 @@ void mainMenu(Student* student){
       cin>>b;
       switch(b){
         case 1:
-
         enteredClub.viewAssignments(s2);
-        //remaining idhar thoda sa
+        break;
         case 2:
         if(enteredClub->isAdmin(s2)){
+          Admin* admin=enteredClub->getAdmin();
           cout<<"1. Create assignment"<<endl;
           cout<<"2. Add member"<<endl;
           cout<<"3. Remove member"<<endl;
           cout<<"4. Promote to checker"<<endl;
-          cout<<"5. Demote to normnal"<<endl;
+          cout<<"5. Demote to normal"<<endl;
           cout<<"6. Change Admin"<<endl;
+          cout<<"Enter the number of the command you want to perform"<<endl;
+          int c;
+          cin>>c;
+          switch(c){
+            case 1:
+            cout<<"Enter the title of assignment"<<endl;
+            string title;
+            cin>>title;
+            cout<<"Enter the score"<<endl;
+            int score;
+            cin>>score;
+            cout<<"Enter the deadline"<<endl;
+            string deadline;//deadline string mei?
+            cin>>deadline;
+            Assignment* a=new Assignment(title,score,deadline,enteredClub);
+            break;
+            case 2:
+            cout<<"Enter the ID of that student who you want to join in club"<<endl;
+            int d;
+            cin>>d;
+            admin->addMember(d);
+            break;
+            case 3:
+            cout<<"Enter the ID of that student who you want to remove from club"<<endl;
+            int e;
+            cin>>e;
+            admin->removeMember(e);
+            break;
+            case 4:
+            cout<<"Enter the ID of the person that you want to promote to a checker"<<endl;
+            int f;
+            cin>>f;
+            admin->promoteToChecker(f);
+            break;
+            case 5:
+            cout<<"Enter the ID of the person that you want to demote to a normal member"<<endl;
+            int g;
+            cin>>g;
+            admin->demoteToNormal(g);
+            break;
+            case 6:
+            cout<<"Enter the ID of the person that you want to make the new admin"<<endl;
+            int g;
+            cin>>g;
+            admin->changeAdmin();
+            break;
+          }
         }else{
           cout<<"You are not an Admin"<<endl;
           mainMenu();
         }
-
+        break;
       }
+      break;
     }
   }
 }

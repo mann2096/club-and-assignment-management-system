@@ -1,5 +1,6 @@
 #include<iostream>
 #include "Vector.h"
+#include"student.h"
 using namespace std;
 
 class Club;
@@ -20,7 +21,7 @@ class Assignment{
 
   void viewSubmissions();
 
-  void ViewYourSubmissions(Student* s);
+  void viewYourSubmissions(Student* s);
   
   void addSubmission(Submission* sub);
 

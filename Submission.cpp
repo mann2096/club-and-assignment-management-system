@@ -1,7 +1,7 @@
 #include "Submission.h"
 using namespace std;
 
-Submission::Submission(Student* student1,Assignment* assignment1,int score1=0,string file1,string timeOfSubmission){
+Submission::Submission(Student* student1,Assignment* assignment1,int score1,string file1,string timeOfSubmission){
   submittedBy=student1;
   assignment=assignment1;
   score=score1;
@@ -14,6 +14,10 @@ Submission::Submission(Student* student1,Assignment* assignment1,int score1=0,st
       break;
     }
   }
+}
+
+void Submission::setScore(int s){
+  score=s;
 }
 
 Student* Submission::getStudent(){

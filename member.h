@@ -17,6 +17,7 @@ class Member{
 
   public:
   Member(Student* s,Club* c,string r);
+  virtual ~Member() {}
   Student* getStudent()const;
   Club* getClub()const;
   string getRole()const;

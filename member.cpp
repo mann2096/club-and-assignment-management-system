@@ -18,7 +18,7 @@ void Member::setRole(const string& newRole){role=newRole;}
 Admin::Admin(Student* s,Club* c):Member(s,c,"Admin"){}
 
 void Admin::createAssignment(const string& title,int maxScore,const string& deadline){
-  Assignment* a=new Assignment(title,maxScore,deadline);
+  Assignment* a=new Assignment(title, maxScore, deadline, club);
   club->addAssignment(a);
   cout<<"Assignment '"<<title<<"' created in club "<<club->getClubName()<<endl;
 }
@@ -27,7 +27,7 @@ void Admin::addMember(int studentID){
   for(int i=0; i<Students.size(); i++){
     int ID=Students[i]->getID();
     if(ID==studentID){
-      //Add member to the club
+      club->joinClubNoCheck(Students[i]);
       cout<<"Student added to club: "<<club->getClubName()<<endl;
     }
   }
@@ -38,25 +38,86 @@ void Admin::removeMember(int studentID){
   cout<<"Student removed from club: "<<club->getClubName()<<endl;
 }
 
-void Admin::promoteToChecker(Member* m){
-  m->setRole("AssignmentChecker");
-  cout<<"Promoted "<<m->getStudent()->getName()<<" to AssignmentChecker."<<endl;
+void Admin::promoteToChecker(int studentID) {
+    for (int i = 0; i < club->members.size(); i++) {
+        Student* s2 = club->members[i]->getStudent();
+        if (s2->getID() == studentID) {
+            Student* s = s2;
+            Club* c = club;
+            delete club->members[i];
+            AssignmentChecker* checker = new AssignmentChecker(s, c);
+            club->members[i] = checker;
+            club->assignmentCheckers.push_back(checker);
+
+            cout << "Promoted " << s->getName() << " to AssignmentChecker." << endl;
+            return;
+        }
+    }
+
+    cout << "No member found with ID " << studentID 
+         << " in club " << club->getClubName() << endl;
 }
 
-void Admin::demoteToNormal(Member* m){
-  m->setRole("Normal");
-  cout<<"Demoted "<<m->getStudent()->getName()<<" to Normal member."<<endl;
+
+void Admin::demoteToNormal(int studentID) {
+    for (int i = 0; i < club->members.size(); i++) {
+        Member* m = club->members[i];
+        Student* s = m->getStudent();
+
+        if (s->getID() == studentID) {
+            delete club->members[i];
+            NormalMember* normal = new NormalMember(s, club);
+            club->members[i] = normal;
+            for (int j = 0; j < club->assignmentCheckers.size(); j++) {
+                if (club->assignmentCheckers[j]->getStudent()->getID() == studentID) {
+                    club->assignmentCheckers.remove(j);
+                    break;
+                }
+            }
+
+            cout << "Demoted " << s->getName() << " to Normal member." << endl;
+            return;
+        }
+    }
+
+    cout << "No member found with ID " << studentID << " in club " 
+         << club->getClubName() << endl;
 }
 
-void Admin::changeAdmin(Member* newAdmin){
-  if(newAdmin->getClub()!=club){
-    cout<<"Error: Member does not belong to this club."<<endl;
-    return;
-  }
-  this->setRole("Normal");
-  newAdmin->setRole("Admin");
-  cout<<"Admin changed to "<<newAdmin->getStudent()->getName()<<endl;
+
+void Admin::changeAdmin(int studentID) {
+    Member* newAdminMember = nullptr;
+    int newAdminIndex = -1;
+
+    for (int i = 0; i < club->members.size(); i++) {
+        if (club->members[i]->getStudent()->getID() == studentID) {
+            newAdminMember = club->members[i];
+            newAdminIndex = i;
+            break;
+        }
+    }
+
+    if (!newAdminMember) {
+        cout << "No member found with ID " << studentID 
+             << " in club " << club->getClubName() << endl;
+        return;
+    }
+    for (int i = 0; i < club->members.size(); i++) {
+        if (club->members[i] == club->admin) {
+            Student* oldAdminStudent = club->admin->getStudent();
+            delete club->members[i];
+            club->members[i] = new NormalMember(oldAdminStudent, club);
+            break;
+        }
+    }
+    Student* newAdminStudent = newAdminMember->getStudent();
+    Admin* newAdminObj = new Admin(newAdminStudent, club);
+    club->members[newAdminIndex] = newAdminObj;
+    club->admin = newAdminObj;
+
+    cout << "Admin changed to " << newAdminStudent->getName() << endl;
 }
+
 
 AssignmentChecker::AssignmentChecker(Student* s,Club* c):Member(s,c,"AssignmentChecker"){}
 void AssignmentChecker::gradeAssignment(Assignment* a,Student* s,int score){

@@ -35,16 +35,3 @@ void Student::submitAssignment(Assignment* a,string file,string timeOfSubmission
   submissions.push_back(s);
   a->addSubmission(s);
 }
-
-void Student::viewSubmissions()const{
-  cout<<"Submissions for "<<name<<" (ID: "<<id<<"):"<<endl;
-  for(int i=0;i<submissions.size();i++){
-    Submission* s=submissions[i];
-    if(s){
-      cout<<"- Assignment: "<<s->getAssignment()->getTitle()
-          <<" | File: "<<s->getFile()
-          <<" | Score: "<<s->getScore()
-          <<(s->isLate()?" | Late":" | On time")<<endl;
-    }
-  }
-}

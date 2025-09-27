@@ -19,23 +19,29 @@ Assignment::Assignment(string title, int score, string deadline, Club* parent) {
       cout<<(i+1)<<". Student: "<<(*sub).getStudent()<<endl;
       cout<<"Score: "<<(*sub).getScore()<<endl;
       cout<<"File: "<<(*sub).getFile()<<endl;
-      int num=(*sub).isLate();
-      if(num==0) cout<<"Late Status: No"<<endl;
-      else cout<<"Late Status: Yes"<<endl;
+      if(!sub->isLate()) cout << "Late Status: No" << endl;
+      else cout << "Late Status: Yes" << endl;
     }
+    cout<<"Enter the number of submission which you want to grade"<<endl;
+    int a;
+    cin>>a;
+    cout<<"Enter the score which you want to give"<<endl;
+    int b;
+    cin>>b;
+    submissions[a-1]->setscore(b);
   }
 
-  void Assignment::viewYourSubmissions(Student* s)
+  void Assignment::viewYourSubmissions(Student* s){
     for(int i=0; i<submissions.size(); i++){
-        Student* s2=submissions[i]->getStudent;
+        Student* s2=submissions[i]->getStudent();
         if(s2->getID()==s->getID()){
          Submission* sub=submissions[i];
          cout<<(i+1)<<". Student: "<<(*sub).getStudent()<<endl;
          cout<<"Score: "<<(*sub).getScore()<<endl;
          cout<<"File: "<<(*sub).getFile()<<endl;
-         int num=(*sub).isLate();
-         if(num==0) cout<<"Late Status: No"<<endl;
-         else cout<<"Late Status: Yes"<<endl;          
+         bool num=(*sub).isLate();
+         if(!sub->isLate()) cout << "Late Status: No" << endl;
+         else cout << "Late Status: Yes" << endl;          
         }
     }
   }

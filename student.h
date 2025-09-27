@@ -13,7 +13,6 @@ class Student{
   int id;
   string password;
   Vector<Club*> joinedClubs;
-  Vector<Submission*> submissions;
 
   public:
   Student(int id,string name,string password);
@@ -24,5 +23,4 @@ class Student{
 
   void viewMyClubs(Student* student);
   void submitAssignment(Assignment* a,string file,string timeOfSubmission);
-  void viewSubmissions()const;
 };

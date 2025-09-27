@@ -16,10 +16,11 @@ class Submission{
   bool isLate;
 
   public:
-  Submission(Student* student1,Assignment* assignment1,int score1,string file1,string timeOfSubmission);
+  Submission(Student* student1, Assignment* assignment1, int score1=0, string file1="", string timeOfSubmission="");
   Student* getStudent();
   Assignment* getAssignment();
   int getScore();
   string getFile();
   bool isLate();
+  void setScore(int score);
 };
