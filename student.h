@@ -14,6 +14,7 @@ class Student{
   int id;
   string password;
   Vector<Club*> joinedClubs;
+  Vector<Submission*> submissions;
 
   public:
   Student(int id,string name,string password);
@@ -22,6 +23,6 @@ class Student{
   bool checkPassword(int enteredID,string enteredPassword);
   void joinClubs(Club* c);
 
-  void viewMyClubs(Student* student);
+  Club* viewMyClubs(Student* student);
   void submitAssignment(Assignment* a,string file,string timeOfSubmission);
 };
