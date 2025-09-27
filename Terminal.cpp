@@ -15,7 +15,7 @@ Club* enteredClub;
 
 
 void setupBaseData() {
-    // ⿡ Create some students
+
     Student* s1 = new Student(1, "Alice", "password1");
     Student* s2 = new Student(2, "Bob", "password2");
     Student* s3 = new Student(3, "Charlie", "password3");
@@ -34,39 +34,39 @@ void setupBaseData() {
     Students.push_back(s7);
     Students.push_back(s8);
 
-    // ⿢ Create clubs with admins
-    Club* club1 = new Club("Chess Club", 101, s1);   // Alice admin
-    Club* club2 = new Club("Music Club", 102, s3);   // Charlie admin
-    Club* club3 = new Club("Coding Club", 103, s5);  // Eve admin
+
+    Club* club1 = new Club("Chess Club", 101, s1);   
+    Club* club2 = new Club("Music Club", 102, s3);   
+    Club* club3 = new Club("Coding Club", 103, s5);  
 
     Clubs.push_back(club1);
     Clubs.push_back(club2);
     Clubs.push_back(club3);
 
-    // ⿣ Members join clubs
-    s2->joinClubs(club1);   // Bob joins Chess
-    s4->joinClubs(club1);   // David joins Chess
 
-    s6->joinClubs(club2);   // Frank joins Music
-    s7->joinClubs(club2);   // Grace joins Music
+    s2->joinClubs(club1);   
+    s4->joinClubs(club1);   
 
-    s2->joinClubs(club3);   // Bob joins Coding
-    s8->joinClubs(club3);   // Hank joins Coding
+    s6->joinClubs(club2);  
+    s7->joinClubs(club2);   
 
-    // ⿤ Admins create assignments
-    Admin* admin1 = club1->getAdmin(); // Alice
+    s2->joinClubs(club3); 
+    s8->joinClubs(club3); 
+
+
+    Admin* admin1 = club1->getAdmin(); 
     admin1->createAssignment("Opening Strategies", 100, "2025-10-10");
     admin1->createAssignment("Endgame Tactics", 100, "2025-10-15");
 
-    Admin* admin2 = club2->getAdmin(); // Charlie
+    Admin* admin2 = club2->getAdmin(); 
     admin2->createAssignment("Compose a Melody", 50, "2025-10-12");
     admin2->createAssignment("Perform a Song", 100, "2025-10-18");
 
-    Admin* admin3 = club3->getAdmin(); // Eve
+    Admin* admin3 = club3->getAdmin();
     admin3->createAssignment("Data Structures Project", 100, "2025-10-20");
     admin3->createAssignment("Debugging Challenge", 75, "2025-10-25");
 
-    // ⿥ Add submissions
+   
     Assignment* c1_a1 = club1->getAssignment()[0];
     Assignment* c1_a2 = club1->getAssignment()[1];
 
@@ -76,28 +76,28 @@ void setupBaseData() {
     Assignment* c3_a1 = club3->getAssignment()[0];
     Assignment* c3_a2 = club3->getAssignment()[1];
 
-    // Chess submissions
+   
     Submission* sub1 = new Submission(s2, c1_a1, 0, "s2_opening.pdf", "2025-09-27");
     Submission* sub2 = new Submission(s4, c1_a1, 0, "s4_opening.pdf", "2025-09-27");
     c1_a1->addSubmission(sub1);
     c1_a1->addSubmission(sub2);
 
-    // Music submissions
+    
     Submission* sub3 = new Submission(s6, c2_a1, 0, "s6_melody.mp3", "2025-09-28");
     Submission* sub4 = new Submission(s7, c2_a1, 0, "s7_melody.mp3", "2025-09-28");
     c2_a1->addSubmission(sub3);
     c2_a1->addSubmission(sub4);
 
-    // Coding submissions
+  
     Submission* sub5 = new Submission(s2, c3_a1, 0, "s2_ds_project.zip", "2025-09-29");
     Submission* sub6 = new Submission(s8, c3_a1, 0, "s8_ds_project.zip", "2025-09-29");
     c3_a1->addSubmission(sub5);
     c3_a1->addSubmission(sub6);
 
-    // ⿦ Promote some members to checkers
-    admin1->promoteToChecker(2); // Bob becomes checker in Chess Club
-    admin2->promoteToChecker(6); // Frank becomes checker in Music Club
-    admin3->promoteToChecker(8); // Hank becomes checker in Coding Club
+    
+    admin1->promoteToChecker(2); 
+    admin2->promoteToChecker(6); 
+    admin3->promoteToChecker(8); 
 }
 
 
@@ -111,9 +111,6 @@ void getAllClubNames() {
     for (int i = 0; i < Clubs.size(); i++) {
         cout << i + 1 << ". " << Clubs[i]->getClubName() << endl;
     }
-}
-int getTotalNumberOfClubs(){
-  return Clubs.size();
 }
 
 Student* login(){
@@ -166,23 +163,24 @@ void mainMenu(Student* student){
     cout<<"1. Join a club"<<endl;
     cout<<"2. View your clubs"<<endl;
     cout<<"3. Exit"<<endl;
-    cout<<"Enter the number for the command which you want to perform"<<endl;
+    cout<<"Enter the number of the command you want to perform"<<endl;
     int choice; cin>>choice;
 
     switch(choice){
       case 1:{
       getAllClubNames();
-      cout<<"Enter the number before the club which you want to join: "<<endl;
+      cout<<"Enter the number of the club you want to join: "<<endl;
       int num;
       cin>>num;
-
       Club* currentClub=Clubs[num-1];
       currentClub->getMembers();
-      cout<<"Enter 1 to confirm to join the club or enter 2 to return "<<endl;
+      cout<<"Enter 1 to confirm to join the club or 0 to exit"<<endl;
       int a;
       cin>>a;
       if(a==1){
-        s2->joinClubs(currentClub);
+        if(currentClub->alreadyMember(student)){
+          cout<<"You are already a member"<<endl;
+        }else s2->joinClubs(currentClub);
       }
       break;
       }
@@ -194,8 +192,8 @@ void mainMenu(Student* student){
       cout<<"CLUB MENU"<<endl;
       cout<<"1. View Assignments"<<endl;
       cout<<"2. Admin Functions"<<endl;
-      cout<<"3.EXIT"<<endl;
-      cout<<"Enter the number for the command which you want to perform"<<endl;
+      cout<<"3. Exit"<<endl;
+      cout<<"Enter the number of the command you want to perform"<<endl;
       int b;
       cin>>b;
       switch(b){
@@ -209,7 +207,7 @@ void mainMenu(Student* student){
           cout<<"2. Add member"<<endl;
           cout<<"3. Remove member"<<endl;
           cout<<"4. Promote to checker"<<endl;
-          cout<<"5. Demote to normal"<<endl;
+          cout<<"5. Demote to member"<<endl;
           cout<<"6. Change Admin"<<endl;
           cout<<"Enter the number of the command you want to perform or 0 to exit"<<endl;
           int c;
@@ -221,6 +219,7 @@ void mainMenu(Student* student){
             case 1:{
             cout<<"Enter the title of assignment"<<endl;
             string title;
+            cin.ignore();
             getline(cin, title);
             cout<<"Enter the score"<<endl;
             int score;
@@ -233,35 +232,35 @@ void mainMenu(Student* student){
             break;
             }
             case 2:{
-            cout<<"Enter the ID of that student who you want to join in club"<<endl;
+            cout<<"Enter the ID of the student you want to join the club"<<endl;
             int d;
             cin>>d;
             admin->addMember(d);
             break;
             }
             case 3:{
-            cout<<"Enter the ID of that student who you want to remove from club"<<endl;
+            cout<<"Enter the ID of the student you want to remove from the club"<<endl;
             int e;
             cin>>e;
             admin->removeMember(e);
             break;
             }
             case 4:{
-            cout<<"Enter the ID of the person that you want to promote to a checker"<<endl;
+            cout<<"Enter the ID of the person you want to promote to a checker"<<endl;
             int f;
             cin>>f;
             admin->promoteToChecker(f);
             break;
             }
             case 5:{
-            cout<<"Enter the ID of the person that you want to demote to a normal member"<<endl;
+            cout<<"Enter the ID of the person you want to demote to a normal member"<<endl;
             int g;
             cin>>g;
             admin->demoteToNormal(g);
             break;
             }
             case 6:{
-            cout<<"Enter the ID of the person that you want to make the new admin"<<endl;
+            cout<<"Enter the ID of the person you want to make the new admin"<<endl;
             int g;
             cin>>g;
             admin->changeAdmin(g);
