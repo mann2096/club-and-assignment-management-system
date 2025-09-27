@@ -13,13 +13,13 @@ Vector<Club*> Clubs;
 Student* s2;
 Club* enteredClub;
 
-void getAllClubNames() const {
+void getAllClubNames() {
     if (Clubs.size() == 0) {
         cout << "No clubs exist in the system." << endl;
         return;
     }
     for (int i = 0; i < Clubs.size(); i++) {
-        cout << i + 1 << ". " << Clubs[i].getClubName() << endl;
+        cout << i + 1 << ". " << Clubs[i]->getClubName() << endl;
     }
 }
 int getTotalNumberOfClubs(){
@@ -47,7 +47,7 @@ Student* FirstMenu(){
   cout<<"2. Login"<<endl;
   int num; cin>>num;
   if(num==1){
-    int ID, string name, string password;
+    int ID; string name, password;
     cout<<"Enter your ID"<<endl;
     cin>>ID;
     cout<<"Enter your name"<<endl;
@@ -82,7 +82,7 @@ void mainMenu(Student* student){
       cout<<"Enter the number before the club which you want to join: "<<endl;
       int num;
       cin>>num;
-      int noOfClubs=getNoOfClubs();
+      //int noOfClubs=getNoOfClubs();
       Club* currentClub=Clubs[num-1];
       currentClub->getMembers();
       cout<<"Enter 1 to confirm to join the club or enter 2 to return "<<endl;
@@ -172,6 +172,11 @@ void mainMenu(Student* student){
       return;
     }
   }
+  cout<<"Enter 1 to return to the main menu"<<endl;
+  int z;
+  cin>>z;
+  if(z==1) mainMenu();
+  else return;
 }
 
 int main(){
@@ -182,5 +187,7 @@ int main(){
     student=FirstMenu();
   }
   mainMenu(student);
+
+  return 0;
 }
 }

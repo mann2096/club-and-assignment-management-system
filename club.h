@@ -1,3 +1,4 @@
+#pragma once
 #include<iostream>
 #include<string>
 #include"Vector.h"
@@ -28,7 +29,7 @@ class Club{
   bool isAssignmentChecker(Student* s)const;
   void viewAssignments(Student* student)const;
 
-  vector<Member*> getAssignmentCheckers()const;
+  Vector<Member*> getAssignmentCheckers()const;
   void joinClubNoCheck(Student* s);
   void removeMember(int studentID);
 };
