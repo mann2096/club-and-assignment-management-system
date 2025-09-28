@@ -171,7 +171,7 @@ void mainMenu(Student* student){
     cout<<"1. Join a club"<<endl;
     cout<<"2. View your clubs"<<endl;
     cout<<"3. Exit"<<endl;
-    cout<<"4.Create Club"<<endl;
+    cout<<"4. Create a Club"<<endl;
     cout<<"Enter the number of the command you want to perform"<<endl;
     int choice; cin>>choice;
 
@@ -228,11 +228,11 @@ void mainMenu(Student* student){
               break;
             }
             case 1:{
-            cout<<"Enter the title of assignment"<<endl;
+            cout<<"Enter the title of the assignment"<<endl;
             string title;
             cin.ignore();
             getline(cin, title);
-            cout<<"Enter the score"<<endl;
+            cout<<"Enter the maximum obtainable score"<<endl;
             int score;
             cin>>score;
             cout<<"Enter the deadline"<<endl;
@@ -289,11 +289,12 @@ void mainMenu(Student* student){
       return;
       }
       case 4:{
-        string w;
+        string w; cin.ignore();
         cout<<"Enter the Name of your club"<<endl;
-        cin>>w;
+        getline(cin, w);
         int z=Clubs.size()+1;
         Club* club4 = new Club(w, z, s2);
+        Clubs.push_back(club4);
         break;
       }
     }
