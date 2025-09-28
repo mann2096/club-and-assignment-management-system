@@ -88,22 +88,21 @@ void Admin::demoteToNormal(int studentID) {
 
 
 void Admin::changeAdmin(int studentID) {
-    Member* newAdminMember = nullptr;
     int newAdminIndex = -1;
 
     for (int i = 0; i < club->members.size(); i++) {
         if (club->members[i]->getStudent()->getID() == studentID) {
-            newAdminMember = club->members[i];
             newAdminIndex = i;
             break;
         }
     }
 
-    if (!newAdminMember) {
+    if (newAdminIndex == -1) {
         cout << "No member found with ID " << studentID 
              << " in club " << club->getClubName() << endl;
         return;
     }
+
     for (int i = 0; i < club->members.size(); i++) {
         if (club->members[i] == club->admin) {
             Student* oldAdminStudent = club->admin->getStudent();
@@ -112,13 +111,24 @@ void Admin::changeAdmin(int studentID) {
             break;
         }
     }
-    Student* newAdminStudent = newAdminMember->getStudent();
+
+    for (int j = 0; j < club->assignmentCheckers.size(); j++) {
+        if (club->assignmentCheckers[j]->getStudent()->getID() == studentID) {
+            club->assignmentCheckers.remove(j);
+            break;
+        }
+    }
+
+    Student* newAdminStudent = club->members[newAdminIndex]->getStudent();
+    delete club->members[newAdminIndex];   
     Admin* newAdminObj = new Admin(newAdminStudent, club);
     club->members[newAdminIndex] = newAdminObj;
     club->admin = newAdminObj;
 
     cout << "Admin changed to " << newAdminStudent->getName() << endl;
 }
+
+
 
 
 AssignmentChecker::AssignmentChecker(Student* s,Club* c):Member(s,c,"AssignmentChecker"){}

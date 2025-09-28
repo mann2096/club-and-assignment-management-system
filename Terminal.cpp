@@ -15,92 +15,100 @@ Club* enteredClub;
 
 
 void setupBaseData() {
+    Student* s1  = new Student(1,  "Atharv",   "pass1");
+    Student* s2  = new Student(2,  "Swastik",  "pass2");
+    Student* s3  = new Student(3,  "Somye",    "pass3");
+    Student* s4  = new Student(4,  "Stuti",    "pass4");
+    Student* s5  = new Student(5,  "Shradha",  "pass5");
+    Student* s6  = new Student(6,  "Khushi",   "pass6");
+    Student* s7  = new Student(7,  "Rudra",    "pass7");
+    Student* s8  = new Student(8,  "Darshan",  "pass8");
+    Student* s9  = new Student(9,  "Saksham",  "pass9");
+    Student* s10 = new Student(10, "Sasmit",   "pass10");
+    Student* s11 = new Student(11, "Pulkit",   "pass11");
+    Student* s12 = new Student(12, "Ameya",    "pass12");
+    Student* s13 = new Student(13, "Kabeer",   "pass13");
+    Student* s14 = new Student(14, "Divyansh", "pass14");
+    Student* s15 = new Student(15, "Pranav",   "pass15");
 
-    Student* s1 = new Student(1, "Alice", "password1");
-    Student* s2 = new Student(2, "Bob", "password2");
-    Student* s3 = new Student(3, "Charlie", "password3");
-    Student* s4 = new Student(4, "David", "password4");
-    Student* s5 = new Student(5, "Eve", "password5");
-    Student* s6 = new Student(6, "Frank", "password6");
-    Student* s7 = new Student(7, "Grace", "password7");
-    Student* s8 = new Student(8, "Hank", "password8");
+    Students.push_back(s1); Students.push_back(s2); Students.push_back(s3);
+    Students.push_back(s4); Students.push_back(s5); Students.push_back(s6);
+    Students.push_back(s7); Students.push_back(s8); Students.push_back(s9);
+    Students.push_back(s10); Students.push_back(s11); Students.push_back(s12);
+    Students.push_back(s13); Students.push_back(s14); Students.push_back(s15);
 
-    Students.push_back(s1);
-    Students.push_back(s2);
-    Students.push_back(s3);
-    Students.push_back(s4);
-    Students.push_back(s5);
-    Students.push_back(s6);
-    Students.push_back(s7);
-    Students.push_back(s8);
-
-
-    Club* club1 = new Club("Chess Club", 101, s1);   
-    Club* club2 = new Club("Music Club", 102, s3);   
-    Club* club3 = new Club("Coding Club", 103, s5);  
+    Club* club1 = new Club("IMG",      201, s1);
+    Club* club2 = new Club("SDS",      202, s4);
+    Club* club3 = new Club("Robocon",  203, s7);
+    Club* club4 = new Club("E-Cell",   204, s10);
 
     Clubs.push_back(club1);
     Clubs.push_back(club2);
     Clubs.push_back(club3);
+    Clubs.push_back(club4);
 
+    s2->joinClubs(club1);
+    s3->joinClubs(club1);
+    s4->joinClubs(club1);
 
-    s2->joinClubs(club1);   
-    s4->joinClubs(club1);   
+    s5->joinClubs(club2);
+    s6->joinClubs(club2);
+    s7->joinClubs(club2);
 
-    s6->joinClubs(club2);  
-    s7->joinClubs(club2);   
+    s8->joinClubs(club3);
+    s9->joinClubs(club3);
+    s10->joinClubs(club3);
 
-    s2->joinClubs(club3); 
-    s8->joinClubs(club3); 
+    s11->joinClubs(club4);
+    s12->joinClubs(club4);
+    s13->joinClubs(club4);
+    s14->joinClubs(club4);
+    s15->joinClubs(club4);
 
+    Admin* admin1 = club1->getAdmin();
+    admin1->createAssignment("IMG Design Challenge", 100, "2025-10-05");
+    admin1->createAssignment("Photography Contest",  80,  "2025-10-08");
 
-    Admin* admin1 = club1->getAdmin(); 
-    admin1->createAssignment("Opening Strategies", 100, "2025-10-10");
-    admin1->createAssignment("Endgame Tactics", 100, "2025-10-15");
-
-    Admin* admin2 = club2->getAdmin(); 
-    admin2->createAssignment("Compose a Melody", 50, "2025-10-12");
-    admin2->createAssignment("Perform a Song", 100, "2025-10-18");
+    Admin* admin2 = club2->getAdmin();
+    admin2->createAssignment("ML Model Training",    100, "2025-10-06");
+    admin2->createAssignment("Data Analysis Task",   90,  "2025-10-09");
 
     Admin* admin3 = club3->getAdmin();
-    admin3->createAssignment("Data Structures Project", 100, "2025-10-20");
-    admin3->createAssignment("Debugging Challenge", 75, "2025-10-25");
+    admin3->createAssignment("Robot Arm Build",      120, "2025-10-07");
+    admin3->createAssignment("Circuit Debugging",    75,  "2025-10-11");
 
-   
-    Assignment* c1_a1 = club1->getAssignment()[0];
-    Assignment* c1_a2 = club1->getAssignment()[1];
+    Admin* admin4 = club4->getAdmin();
+    admin4->createAssignment("Startup Pitch Deck",   100, "2025-10-12");
+    admin4->createAssignment("Market Research",      70,  "2025-10-15");
 
-    Assignment* c2_a1 = club2->getAssignment()[0];
-    Assignment* c2_a2 = club2->getAssignment()[1];
+    club1->getAssignment()[0]->addSubmission(new Submission(s2, club1->getAssignment()[0], 0, "swastik_design.pdf", "2025-09-28"));
+    club1->getAssignment()[0]->addSubmission(new Submission(s3, club1->getAssignment()[0], 0, "somye_design.pdf",   "2025-09-28"));
+    club1->getAssignment()[1]->addSubmission(new Submission(s4, club1->getAssignment()[1], 0, "stuti_photo.jpg",   "2025-09-29"));
+    club1->getAssignment()[1]->addSubmission(new Submission(s1, club1->getAssignment()[1], 0, "atharv_photo.jpg",  "2025-09-29"));
 
-    Assignment* c3_a1 = club3->getAssignment()[0];
-    Assignment* c3_a2 = club3->getAssignment()[1];
 
-   
-    Submission* sub1 = new Submission(s2, c1_a1, 0, "s2_opening.pdf", "2025-09-27");
-    Submission* sub2 = new Submission(s4, c1_a1, 0, "s4_opening.pdf", "2025-09-27");
-    c1_a1->addSubmission(sub1);
-    c1_a1->addSubmission(sub2);
+    club2->getAssignment()[0]->addSubmission(new Submission(s5, club2->getAssignment()[0], 0, "shradha_ml.ipynb", "2025-09-30"));
+    club2->getAssignment()[0]->addSubmission(new Submission(s6, club2->getAssignment()[0], 0, "khushi_ml.ipynb",  "2025-09-30"));
+    club2->getAssignment()[1]->addSubmission(new Submission(s7, club2->getAssignment()[1], 0, "rudra_data.csv",   "2025-10-01"));
+    club2->getAssignment()[1]->addSubmission(new Submission(s4, club2->getAssignment()[1], 0, "stuti_data.csv",   "2025-10-01"));
 
-    
-    Submission* sub3 = new Submission(s6, c2_a1, 0, "s6_melody.mp3", "2025-09-28");
-    Submission* sub4 = new Submission(s7, c2_a1, 0, "s7_melody.mp3", "2025-09-28");
-    c2_a1->addSubmission(sub3);
-    c2_a1->addSubmission(sub4);
+    club3->getAssignment()[0]->addSubmission(new Submission(s8,  club3->getAssignment()[0], 0, "darshan_robot.pdf", "2025-10-02"));
+    club3->getAssignment()[0]->addSubmission(new Submission(s9,  club3->getAssignment()[0], 0, "saksham_robot.pdf", "2025-10-02"));
+    club3->getAssignment()[1]->addSubmission(new Submission(s10, club3->getAssignment()[1], 0, "sasmit_circuit.png","2025-10-03"));
+    club3->getAssignment()[1]->addSubmission(new Submission(s7,  club3->getAssignment()[1], 0, "rudra_circuit.png", "2025-10-03"));
 
-  
-    Submission* sub5 = new Submission(s2, c3_a1, 0, "s2_ds_project.zip", "2025-09-29");
-    Submission* sub6 = new Submission(s8, c3_a1, 0, "s8_ds_project.zip", "2025-09-29");
-    c3_a1->addSubmission(sub5);
-    c3_a1->addSubmission(sub6);
+    club4->getAssignment()[0]->addSubmission(new Submission(s11, club4->getAssignment()[0], 0, "pulkit_pitch.pptx", "2025-10-04"));
+    club4->getAssignment()[0]->addSubmission(new Submission(s12, club4->getAssignment()[0], 0, "ameya_pitch.pptx",  "2025-10-04"));
+    club4->getAssignment()[1]->addSubmission(new Submission(s13, club4->getAssignment()[1], 0, "kabeer_market.pdf", "2025-10-05"));
+    club4->getAssignment()[1]->addSubmission(new Submission(s14, club4->getAssignment()[1], 0, "divyansh_market.pdf","2025-10-05"));
 
-    
-    admin1->promoteToChecker(2); 
-    admin2->promoteToChecker(6); 
-    admin3->promoteToChecker(8); 
+    admin1->promoteToChecker(2);  
+    admin2->promoteToChecker(5);  
+    admin3->promoteToChecker(9);   
+    admin4->promoteToChecker(12);  
+
+    cout << "Base data setup complete: 15 students, 4 clubs, 8 assignments, 16+ submissions." << endl;
 }
-
-
 
 
 void getAllClubNames() {
@@ -139,11 +147,11 @@ Student* FirstMenu(){
     string name,password;
 
     cout<<"Enter your ID"<<endl;
-    cin>>ID;
+    cin>>ID;cin.ignore();
     cout<<"Enter your name"<<endl;
     getline(cin, name);
     cout<<"Enter your password"<<endl;
-    cin>>password;
+    getline(cin, password);
     Student* s=new Student(ID, name, password);
     Students.push_back(s);
     s2=login();
@@ -163,6 +171,7 @@ void mainMenu(Student* student){
     cout<<"1. Join a club"<<endl;
     cout<<"2. View your clubs"<<endl;
     cout<<"3. Exit"<<endl;
+    cout<<"4.Create Club"<<endl;
     cout<<"Enter the number of the command you want to perform"<<endl;
     int choice; cin>>choice;
 
@@ -189,6 +198,7 @@ void mainMenu(Student* student){
       if(enteredClub==nullptr){
         break;
       }
+      cout<<endl;
       cout<<"CLUB MENU"<<endl;
       cout<<"1. View Assignments"<<endl;
       cout<<"2. Admin Functions"<<endl;
@@ -203,6 +213,7 @@ void mainMenu(Student* student){
         case 2:
         if(enteredClub->isAdmin(s2)){
           Admin* admin=enteredClub->getAdmin();
+          cout<<endl;
           cout<<"1. Create assignment"<<endl;
           cout<<"2. Add member"<<endl;
           cout<<"3. Remove member"<<endl;
@@ -276,6 +287,14 @@ void mainMenu(Student* student){
       }
       case 3:{
       return;
+      }
+      case 4:{
+        string w;
+        cout<<"Enter the Name of your club"<<endl;
+        cin>>w;
+        int z=Clubs.size()+1;
+        Club* club4 = new Club(w, z, s2);
+        break;
       }
     }
   }

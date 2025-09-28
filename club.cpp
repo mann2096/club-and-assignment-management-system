@@ -64,6 +64,7 @@ void Club::viewAssignments(Student* student)const{
     if(num==0){
       return;
     }
+    cout<<endl;
     cout<<"1. View all assignment submissions"<<endl;
     cout<<"2. View your submissions"<<endl;
     cout<<"3. Add a submission"<<endl;
