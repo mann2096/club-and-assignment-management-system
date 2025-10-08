@@ -297,6 +297,9 @@ void mainMenu(Student* student){
         Clubs.push_back(club4);
         break;
       }
+      default : {
+        cout << "Incorrect command";
+      }
     }
   }
 }
